@@ -282,10 +282,142 @@ public final class Algorithms {
 
         return result;
     }
-    /** Establish a simple exact-search baseline against which the other two searches can be checked. Implement naive according to docs/guide/CONTRACTS.md. */
-    static Map<String,Object> naive(Map<String,Object> input) { throw new UnsupportedOperationException("TODO naive"); }
-    /** Reuse information about matched prefixes to avoid restarting the search after every mismatch. Implement kmp according to docs/guide/CONTRACTS.md. */
-    static Map<String,Object> kmp(Map<String,Object> input) { throw new UnsupportedOperationException("TODO kmp"); }
+
+    static Map<String, Object> naive(Map<String, Object> input) {
+
+        // 1. text and sample
+        String text = (String) input.get("text");
+        String pattern = (String) input.get("pattern");
+
+        int n = text.length();
+        int m = pattern.length();
+
+        // 2. list of found
+        List<Integer> positions = new ArrayList<>();
+
+        // 3. empty
+        if (m == 0) {
+
+            for (int i = 0; i <= n; i++) {
+                positions.add(i);
+            }
+
+        } else if (m <= n) {
+
+            // 4. every possible coincidence
+            for (int i = 0; i <= n - m; i++) {
+
+                boolean match = true;
+
+                // 5. compare
+                for (int j = 0; j < m; j++) {
+
+                    if (text.charAt(i + j) != pattern.charAt(j)) {
+                        match = false;
+                        break;
+                    }
+                }
+
+                // 6. if match - hold
+                if (match) {
+                    positions.add(i);
+                }
+            }
+        }
+
+        // 7. result
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("positions", positions);
+
+        return result;
+    }
+
+    private static int[] buildPrefixFunction(String pattern) {
+
+        int m = pattern.length();
+
+        int[] pi = new int[m];
+
+        int j = 0;
+
+        for (int i = 1; i < m; i++) {
+
+            // if !match
+            // try shorter
+            while (j > 0 && pattern.charAt(i) != pattern.charAt(j)) {
+                j = pi[j - 1];
+            }
+
+            // match -> make longer
+            if (pattern.charAt(i) == pattern.charAt(j)) {
+                j++;
+            }
+
+            pi[i] = j;
+        }
+
+        return pi;
+    }
+    static Map<String, Object> kmp(Map<String, Object> input) {
+
+        // 1. text & sample
+        String text = (String) input.get("text");
+        String pattern = (String) input.get("pattern");
+
+        int n = text.length();
+        int m = pattern.length();
+
+        List<Integer> positions = new ArrayList<>();
+
+        // 2. empty
+        if (m == 0) {
+
+            for (int i = 0; i <= n; i++) {
+                positions.add(i);
+            }
+
+        } else {
+
+            // 3. prefix func
+            int[] pi = buildPrefixFunction(pattern);
+
+            // j — how many match
+            int j = 0;
+
+            // 4. through text
+            for (int i = 0; i < n; i++) {
+
+                // if !match,
+                // use prefix
+                while (j > 0 && text.charAt(i) != pattern.charAt(j)) {
+                    j = pi[j - 1];
+                }
+
+                // if match
+                if (text.charAt(i) == pattern.charAt(j)) {
+                    j++;
+                }
+
+                // if match all sample
+                if (j == m) {
+
+                    positions.add(i - m + 1);
+
+                    // ready for search
+                    // next
+                    j = pi[j - 1];
+                }
+            }
+        }
+
+        // 5. result
+        Map<String, Object> result = new HashMap<>();
+
+        result.put("positions", positions);
+
+        return result;
+    }
     /** Reject windows with unequal fingerprints and verify every equal-hash candidate. Implement rk according to docs/guide/CONTRACTS.md. */
     static Map<String,Object> rk(Map<String,Object> input) { throw new UnsupportedOperationException("TODO rk"); }
     /** Order the text suffixes and use adjacent common prefixes to find repeated substrings. Implement suffix according to docs/guide/CONTRACTS.md. */
