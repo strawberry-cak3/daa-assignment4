@@ -51,8 +51,98 @@ public final class Algorithms {
 
         return result;
     }
+
     /** Plan the cheapest sequence of adjacent block merges when the original order must be preserved. Implement merge according to docs/guide/CONTRACTS.md. */
-    static Map<String,Object> merge(Map<String,Object> input) { throw new UnsupportedOperationException("TODO merge"); }
+    private static long[] readSizes(Object rawSizes) {
+        List<?> list = (List<?>) rawSizes;
+
+        long[] sizes = new long[list.size()];
+
+        for (int i = 0; i < list.size(); i++) {
+            sizes[i] = ((Number) list.get(i)).longValue();
+        }
+
+        return sizes;
+    }
+    private static void buildPlan(
+            int l,
+            int r,
+            int[][] split,
+            List<List<Integer>> plan) {
+
+        if (l >= r) {
+            return;
+        }
+
+        int k = split[l][r];
+
+        buildPlan(l, k, split, plan);
+
+        buildPlan(k + 1, r, split, plan);
+
+        List<Integer> merge = new ArrayList<>();
+
+        merge.add(l);
+        merge.add(k);
+        merge.add(r);
+
+        plan.add(merge);
+    }
+
+    static Map<String, Object> merge(Map<String, Object> input) {
+        long[] sizes = readSizes(input.get("sizes"));
+        int n = sizes.length;
+
+        Map<String, Object> result = new HashMap<>();
+
+        if (n <= 1) {
+            result.put("cost", 0L);
+            result.put("plan", new ArrayList<List<Integer>>());
+            return result;
+        }
+
+        long[][] dp = new long[n][n];
+        int[][] split = new int[n][n];
+
+        long[] prefixSum = new long[n + 1];
+
+        for (int i = 0; i < n; i++) {
+            prefixSum[i + 1] = prefixSum[i] + sizes[i];
+        }
+
+        for (int len = 2; len <= n; len++) {
+
+            for (int l = 0; l <= n - len; l++) {
+
+                int r = l + len - 1;
+
+                long rangeSum = prefixSum[r + 1] - prefixSum[l];
+
+                dp[l][r] = Long.MAX_VALUE;
+
+                for (int k = l; k < r; k++) {
+
+                    long cost = dp[l][k]
+                            + dp[k + 1][r]
+                            + rangeSum;
+
+                    if (cost < dp[l][r]) {
+                        dp[l][r] = cost;
+                        split[l][r] = k;
+                    }
+                }
+            }
+        }
+
+        List<List<Integer>> plan = new ArrayList<>();
+
+        buildPlan(0, n - 1, split, plan);
+
+        result.put("cost", dp[0][n - 1]);
+        result.put("plan", plan);
+
+        return result;
+    }
     /** Choose a maximum-value set when neighbouring vertices are incompatible and conflicts form a tree. Implement tree according to docs/guide/CONTRACTS.md. */
     static Map<String,Object> tree(Map<String,Object> input) { throw new UnsupportedOperationException("TODO tree"); }
     /** Establish a simple exact-search baseline against which the other two searches can be checked. Implement naive according to docs/guide/CONTRACTS.md. */
