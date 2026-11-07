@@ -143,8 +143,145 @@ public final class Algorithms {
 
         return result;
     }
-    /** Choose a maximum-value set when neighbouring vertices are incompatible and conflicts form a tree. Implement tree according to docs/guide/CONTRACTS.md. */
-    static Map<String,Object> tree(Map<String,Object> input) { throw new UnsupportedOperationException("TODO tree"); }
+
+    static Map<String, Object> tree(Map<String, Object> input) {
+
+        // 1. amount
+        int n = ((Number) input.get("n")).intValue();
+
+        Map<String, Object> result = new HashMap<>();
+
+        // 2. empty tree
+        if (n == 0) {
+            result.put("weight", 0L);
+            result.put("selected", new ArrayList<Integer>());
+            return result;
+        }
+
+        // 3. getting weight
+        List<?> rawWeights = (List<?>) input.get("weights");
+
+        long[] weights = new long[n];
+
+        for (int i = 0; i < n; i++) {
+            weights[i] = ((Number) rawWeights.get(i)).longValue();
+        }
+
+        // 4. listing
+        List<List<Integer>> graph = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        List<?> edges = (List<?>) input.get("edges");
+
+        for (Object edgeObject : edges) {
+            List<?> edge = (List<?>) edgeObject;
+
+            int u = ((Number) edge.get(0)).intValue();
+            int v = ((Number) edge.get(1)).intValue();
+
+            graph.get(u).add(v);
+            graph.get(v).add(u);
+        }
+
+        // 5. getting ready
+        int[] parent = new int[n];
+        int[] order = new int[n];
+        int[] stack = new int[n];
+
+        Arrays.fill(parent, -2);
+
+        // root - 0
+        parent[0] = -1;
+
+        int top = 0;
+        int count = 0;
+
+        stack[top++] = 0;
+
+        // 6. Iterative DFS
+        while (top > 0) {
+
+            int v = stack[--top];
+
+            order[count++] = v;
+
+            for (int u : graph.get(v)) {
+
+                // Do not get back to parent
+                if (parent[u] != -2) {
+                    continue;
+                }
+
+                parent[u] = v;
+                stack[top++] = u;
+            }
+        }
+
+        // 7. DP arrays
+        long[] take = new long[n];
+        long[] skip = new long[n];
+
+        // 8. DP from bottom to top
+        for (int i = count - 1; i >= 0; i--) {
+
+            int v = order[i];
+
+            // if v
+            take[v] = weights[v];
+
+            // if !v
+            skip[v] = 0;
+
+            for (int u : graph.get(v)) {
+
+                // only children of v
+                if (parent[u] != v) {
+                    continue;
+                }
+
+                take[v] += skip[u];
+
+                skip[v] += Math.max(take[u], skip[u]);
+            }
+        }
+
+        // 9. recreate
+        List<Integer> selected = new ArrayList<>();
+
+        boolean[] isSelected = new boolean[n];
+
+        for (int i = 0; i < count; i++) {
+
+            int v = order[i];
+
+            if (parent[v] == -1) {
+
+                // for root best option
+                isSelected[v] = take[v] > skip[v];
+
+            } else if (!isSelected[parent[v]]) {
+
+                // if parent isn't taken
+                // then take this
+                isSelected[v] = take[v] > skip[v];
+            }
+
+            if (isSelected[v]) {
+                selected.add(v);
+            }
+        }
+
+        // 10. result
+        long answer = Math.max(take[0], skip[0]);
+
+        result.put("weight", answer);
+        result.put("selected", selected);
+
+        return result;
+    }
     /** Establish a simple exact-search baseline against which the other two searches can be checked. Implement naive according to docs/guide/CONTRACTS.md. */
     static Map<String,Object> naive(Map<String,Object> input) { throw new UnsupportedOperationException("TODO naive"); }
     /** Reuse information about matched prefixes to avoid restarting the search after every mismatch. Implement kmp according to docs/guide/CONTRACTS.md. */
