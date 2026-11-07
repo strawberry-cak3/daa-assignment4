@@ -182,3 +182,44 @@ The represented prefix length is doubled after each iteration. New ranks are ass
 The implementation uses Java's `Arrays.sort` with a comparator at every doubling step.
 
 After constructing the suffix array, the inverse suffix array is built. Kasai's algorithm then calculates the LCP array, where `lcp[i]` is the longest common prefix of suffixes `sa[i-1]` and `sa[i]`. The
+
+## Testing
+
+All implemented algorithms were tested using custom student test cases.
+
+Test groups:
+- LCS
+- Merge (Interval DP)
+- Tree DP
+- Naive String Matching
+- Knuth-Morris-Pratt (KMP)
+- Rabin-Karp
+- Suffix Array and Kasai LCP
+- Aho-Corasick
+
+### Edge Cases
+The tests cover:
+- Empty inputs
+- Single-element inputs
+- Repeated characters
+- Multiple occurrences of patterns
+- Patterns not found in text
+- Overlapping matches
+- Large integer values (64-bit safety)
+- Multiple requests in a single execution
+
+### Results
+Language: Java
+Checking student tests...
+
+PASS aho
+PASS kmp
+PASS lcs
+PASS merge
+PASS naive
+PASS rk
+PASS suffix
+PASS tree
+
+------------------------------
+ALL STUDENT TESTS PASSED (8 files)

@@ -1,0 +1,112 @@
+[
+  {
+    "input": {
+      "task": "merge",
+      "sizes": []
+    },
+    "output": {
+      "cost": 0,
+      "plan": []
+    },
+    "name": "empty array"
+  },
+  {
+    "input": {
+      "task": "merge",
+      "sizes": [10]
+    },
+    "output": {
+      "cost": 0,
+      "plan": []
+    },
+    "name": "single block"
+  },
+  {
+    "input": {
+      "task": "merge",
+      "sizes": [5, 7]
+    },
+    "output": {
+      "cost": 12,
+      "plan": [[0, 0, 1]]
+    },
+    "name": "two blocks"
+  },
+  {
+    "input": {
+      "task": "merge",
+      "sizes": [2, 3, 4]
+    },
+    "output": {
+      "cost": 14,
+      "plan": [[0, 0, 1], [0, 1, 2]]
+    },
+    "name": "basic optimal merge"
+  },
+  {
+    "input": {
+      "task": "merge",
+      "sizes": [3, 1, 1]
+    },
+    "output": {
+      "cost": 7,
+      "plan": [[1, 1, 2], [0, 0, 2]]
+    },
+    "name": "merge smaller blocks first"
+  },
+  {
+    "input": {
+      "task": "merge",
+      "sizes": [1, 2, 3, 4]
+    },
+    "output": {
+      "cost": 19,
+      "plan": [[0, 0, 1], [0, 1, 2], [0, 2, 3]]
+    },
+    "name": "four blocks"
+  },
+  {
+    "input": {
+      "task": "merge",
+      "sizes": [1, 1, 10]
+    },
+    "output": {
+      "cost": 14,
+      "plan": [[0, 0, 1], [0, 1, 2]]
+    },
+    "name": "small blocks before large block"
+  },
+  {
+    "input": {
+      "task": "merge",
+      "sizes": [0, 5]
+    },
+    "output": {
+      "cost": 5,
+      "plan": [[0, 0, 1]]
+    },
+    "name": "zero-sized block"
+  },
+  {
+    "input": {
+      "task": "merge",
+      "sizes": [1000000000, 1000000000]
+    },
+    "output": {
+      "cost": 2000000000,
+      "plan": [[0, 0, 1]]
+    },
+    "name": "large total cost"
+  },
+  {
+    "input": {
+      "task": "merge",
+      "sizes": [1000000000, 1000000000, 1000000000]
+    },
+    "output": {
+      "cost": 5000000000,
+      "plan": [[0, 0, 1], [0, 1, 2]]
+    },
+    "name": "64-bit integer safety"
+  }
+]

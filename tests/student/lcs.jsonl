@@ -1,0 +1,122 @@
+[
+  {
+    "input": {
+      "task": "lcs",
+      "a": "",
+      "b": ""
+    },
+    "output": {
+      "length": 0,
+      "sequence": ""
+    },
+    "name": "both empty"
+  },
+  {
+    "input": {
+      "task": "lcs",
+      "a": "",
+      "b": "abc"
+    },
+    "output": {
+      "length": 0,
+      "sequence": ""
+    },
+    "name": "first empty"
+  },
+  {
+    "input": {
+      "task": "lcs",
+      "a": "abc",
+      "b": ""
+    },
+    "output": {
+      "length": 0,
+      "sequence": ""
+    },
+    "name": "second empty"
+  },
+  {
+    "input": {
+      "task": "lcs",
+      "a": "ABC",
+      "b": "DEF"
+    },
+    "output": {
+      "length": 0,
+      "sequence": ""
+    },
+    "name": "no common characters"
+  },
+  {
+    "input": {
+      "task": "lcs",
+      "a": "ABCDEF",
+      "b": "ACE"
+    },
+    "output": {
+      "length": 3,
+      "sequence": "ACE"
+    },
+    "name": "simple subsequence"
+  },
+  {
+    "input": {
+      "task": "lcs",
+      "a": "ABCDE",
+      "b": "AECBD"
+    },
+    "output": {
+      "length": 3,
+      "sequence": "ABD"
+    },
+    "name": "subsequence not substring"
+  },
+  {
+    "input": {
+      "task": "lcs",
+      "a": "AAAA",
+      "b": "AA"
+    },
+    "output": {
+      "length": 2,
+      "sequence": "AA"
+    },
+    "name": "repeated characters"
+  },
+  {
+    "input": {
+      "task": "lcs",
+      "a": "ABCBDAB",
+      "b": "BDCABA"
+    },
+    "output": {
+      "length": 4,
+      "sequence": "BCBA"
+    },
+    "name": "classic lcs"
+  },
+  {
+    "input": {
+      "task": "lcs",
+      "a": "HELLO",
+      "b": "YELLOW"
+    },
+    "output": {
+      "length": 4,
+      "sequence": "ELLO"
+    },
+    "name": "common suffix"
+  },
+  {
+    "input": {
+      "task": "lcs",
+      "a": "ABAB",
+      "b": "BABA"
+    },
+    "output": {
+      "length": 3,
+      "sequence": "ABA"
+    },
+    "name": "multiple optimal answers"
+  }
+]

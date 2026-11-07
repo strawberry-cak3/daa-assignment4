@@ -1,0 +1,90 @@
+[
+  {
+    "input": {
+      "task": "aho",
+      "patterns": [],
+      "texts": ["abc", "def"]
+    },
+    "output": {
+      "counts": [[], []]
+    },
+    "name": "empty dictionary"
+  },
+  {
+    "input": {
+      "task": "aho",
+      "patterns": ["a", "b"],
+      "texts": []
+    },
+    "output": {
+      "counts": []
+    },
+    "name": "no texts"
+  },
+  {
+    "input": {
+      "task": "aho",
+      "patterns": ["a", "ab", "abc"],
+      "texts": [""]
+    },
+    "output": {
+      "counts": [[0, 0, 0]]
+    },
+    "name": "empty text"
+  },
+  {
+    "input": {
+      "task": "aho",
+      "patterns": ["a", "aa", "aaa"],
+      "texts": ["aaaa"]
+    },
+    "output": {
+      "counts": [[4, 3, 2]]
+    },
+    "name": "overlapping patterns"
+  },
+  {
+    "input": {
+      "task": "aho",
+      "patterns": ["he", "she", "his", "hers"],
+      "texts": ["ahishers"]
+    },
+    "output": {
+      "counts": [[1, 1, 1, 1]]
+    },
+    "name": "suffix matches"
+  },
+  {
+    "input": {
+      "task": "aho",
+      "patterns": ["he", "she", "he"],
+      "texts": ["sheshe", "sheshe", ""]
+    },
+    "output": {
+      "counts": [[2, 2, 2], [2, 2, 2], [0, 0, 0]]
+    },
+    "name": "duplicate patterns and multiple texts"
+  },
+  {
+    "input": {
+      "task": "aho",
+      "patterns": ["abc", "bc", "c"],
+      "texts": ["abc", "bc", "c"]
+    },
+    "output": {
+      "counts": [[1, 1, 1], [0, 1, 1], [0, 0, 1]]
+    },
+    "name": "suffix pattern relationships"
+  },
+  {
+    "input": {
+      "task": "aho",
+      "patterns": ["a", "b", "ab"],
+      "texts": ["abab", "bbbb", "aaaa"]
+    },
+    "output": {
+      "counts": [[2, 2, 2], [0, 4, 0], [4, 0, 0]]
+    },
+    "name": "independent text counts"
+  }
+]

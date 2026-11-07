@@ -1,0 +1,119 @@
+[
+  {
+    "input": {
+      "task": "tree",
+      "n": 0,
+      "weights": [],
+      "edges": []
+    },
+    "output": {
+      "weight": 0,
+      "selected": []
+    },
+    "name": "empty tree"
+  },
+  {
+    "input": {
+      "task": "tree",
+      "n": 1,
+      "weights": [10],
+      "edges": []
+    },
+    "output": {
+      "weight": 10,
+      "selected": [0]
+    },
+    "name": "single positive vertex"
+  },
+  {
+    "input": {
+      "task": "tree",
+      "n": 1,
+      "weights": [-5],
+      "edges": []
+    },
+    "output": {
+      "weight": 0,
+      "selected": []
+    },
+    "name": "single negative vertex"
+  },
+  {
+    "input": {
+      "task": "tree",
+      "n": 3,
+      "weights": [4, 9, 6],
+      "edges": [[0, 1], [1, 2]]
+    },
+    "output": {
+      "weight": 10,
+      "selected": [0, 2]
+    },
+    "name": "basic chain"
+  },
+  {
+    "input": {
+      "task": "tree",
+      "n": 4,
+      "weights": [10, 4, 5, 6],
+      "edges": [[0, 1], [0, 2], [0, 3]]
+    },
+    "output": {
+      "weight": 15,
+      "selected": [1, 2, 3]
+    },
+    "name": "star tree"
+  },
+  {
+    "input": {
+      "task": "tree",
+      "n": 3,
+      "weights": [-1, -2, -3],
+      "edges": [[0, 1], [1, 2]]
+    },
+    "output": {
+      "weight": 0,
+      "selected": []
+    },
+    "name": "all negative weights"
+  },
+  {
+    "input": {
+      "task": "tree",
+      "n": 3,
+      "weights": [0, 0, 0],
+      "edges": [[0, 1], [1, 2]]
+    },
+    "output": {
+      "weight": 0,
+      "selected": []
+    },
+    "name": "all zero weights"
+  },
+  {
+    "input": {
+      "task": "tree",
+      "n": 6,
+      "weights": [1, 2, 3, 4, 5, 6],
+      "edges": [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]]
+    },
+    "output": {
+      "weight": 12,
+      "selected": [1, 3, 5]
+    },
+    "name": "longer chain"
+  },
+  {
+    "input": {
+      "task": "tree",
+      "n": 4,
+      "weights": [1000000000, 2000000000, 3000000000, 4000000000],
+      "edges": [[0, 1], [1, 2], [2, 3]]
+    },
+    "output": {
+      "weight": 6000000000,
+      "selected": [1, 3]
+    },
+    "name": "large weights"
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "input": {
+      "task": "suffix",
+      "text": ""
+    },
+    "output": {
+      "sa": [],
+      "lcp": [],
+      "repeated": ""
+    },
+    "name": "empty text"
+  },
+  {
+    "input": {
+      "task": "suffix",
+      "text": "a"
+    },
+    "output": {
+      "sa": [0],
+      "lcp": [0],
+      "repeated": ""
+    },
+    "name": "single character"
+  },
+  {
+    "input": {
+      "task": "suffix",
+      "text": "abc"
+    },
+    "output": {
+      "sa": [0, 1, 2],
+      "lcp": [0, 0, 0],
+      "repeated": ""
+    },
+    "name": "all distinct characters"
+  },
+  {
+    "input": {
+      "task": "suffix",
+      "text": "aaaa"
+    },
+    "output": {
+      "sa": [3, 2, 1, 0],
+      "lcp": [0, 1, 2, 3],
+      "repeated": "aaa"
+    },
+    "name": "all identical characters"
+  },
+  {
+    "input": {
+      "task": "suffix",
+      "text": "banana"
+    },
+    "output": {
+      "sa": [5, 3, 1, 0, 4, 2],
+      "lcp": [0, 1, 3, 0, 0, 2],
+      "repeated": "ana"
+    },
+    "name": "banana example"
+  },
+  {
+    "input": {
+      "task": "suffix",
+      "text": "abab"
+    },
+    "output": {
+      "sa": [2, 0, 3, 1],
+      "lcp": [0, 2, 0, 1],
+      "repeated": "ab"
+    },
+    "name": "overlapping repeated substring"
+  },
+  {
+    "input": {
+      "task": "suffix",
+      "text": "mississippi"
+    },
+    "output": {
+      "sa": [10, 7, 4, 1, 0, 9, 8, 6, 3, 5, 2],
+      "lcp": [0, 1, 1, 4, 0, 0, 1, 0, 2, 1, 3],
+      "repeated": "issi"
+    },
+    "name": "complex repeated characters"
+  }
+]

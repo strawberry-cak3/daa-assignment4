@@ -1,0 +1,52 @@
+[
+  {
+    "input": {"task": "rk", "text": "", "pattern": ""},
+    "output": {"positions": [0]},
+    "name": "empty text and pattern"
+  },
+  {
+    "input": {"task": "rk", "text": "abc", "pattern": ""},
+    "output": {"positions": [0, 1, 2, 3]},
+    "name": "empty pattern"
+  },
+  {
+    "input": {"task": "rk", "text": "", "pattern": "a"},
+    "output": {"positions": []},
+    "name": "empty text"
+  },
+  {
+    "input": {"task": "rk", "text": "abc", "pattern": "abcd"},
+    "output": {"positions": []},
+    "name": "pattern longer than text"
+  },
+  {
+    "input": {"task": "rk", "text": "aaaaa", "pattern": "aaa"},
+    "output": {"positions": [0, 1, 2]},
+    "name": "overlapping matches"
+  },
+  {
+    "input": {"task": "rk", "text": "hello hello", "pattern": "hello"},
+    "output": {"positions": [0, 6]},
+    "name": "multiple occurrences"
+  },
+  {
+    "input": {"task": "rk", "text": "Hello hello HELLO", "pattern": "hello"},
+    "output": {"positions": [6]},
+    "name": "case sensitivity"
+  },
+  {
+    "input": {"task": "rk", "text": "abcabcabc", "pattern": "bc"},
+    "output": {"positions": [1, 4, 7]},
+    "name": "repeated pattern"
+  },
+  {
+    "input": {"task": "rk", "text": "abdj", "pattern": "ab"},
+    "output": {"positions": [0]},
+    "name": "hash collision verification"
+  },
+  {
+    "input": {"task": "rk", "text": "abdj", "pattern": "dj"},
+    "output": {"positions": [2]},
+    "name": "second collision window"
+  }
+]

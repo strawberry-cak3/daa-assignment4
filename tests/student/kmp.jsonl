@@ -1,0 +1,112 @@
+[
+  {
+    "input": {
+      "task": "kmp",
+      "text": "",
+      "pattern": ""
+    },
+    "output": {
+      "positions": [0]
+    },
+    "name": "empty text and pattern"
+  },
+  {
+    "input": {
+      "task": "kmp",
+      "text": "abc",
+      "pattern": ""
+    },
+    "output": {
+      "positions": [0, 1, 2, 3]
+    },
+    "name": "empty pattern"
+  },
+  {
+    "input": {
+      "task": "kmp",
+      "text": "",
+      "pattern": "a"
+    },
+    "output": {
+      "positions": []
+    },
+    "name": "empty text"
+  },
+  {
+    "input": {
+      "task": "kmp",
+      "text": "abc",
+      "pattern": "abcd"
+    },
+    "output": {
+      "positions": []
+    },
+    "name": "pattern longer than text"
+  },
+  {
+    "input": {
+      "task": "kmp",
+      "text": "aaaaa",
+      "pattern": "aaa"
+    },
+    "output": {
+      "positions": [0, 1, 2]
+    },
+    "name": "overlapping matches"
+  },
+  {
+    "input": {
+      "task": "kmp",
+      "text": "hello hello",
+      "pattern": "hello"
+    },
+    "output": {
+      "positions": [0, 6]
+    },
+    "name": "multiple occurrences"
+  },
+  {
+    "input": {
+      "task": "kmp",
+      "text": "Hello hello HELLO",
+      "pattern": "hello"
+    },
+    "output": {
+      "positions": [6]
+    },
+    "name": "case sensitivity"
+  },
+  {
+    "input": {
+      "task": "kmp",
+      "text": "abcabcabc",
+      "pattern": "bc"
+    },
+    "output": {
+      "positions": [1, 4, 7]
+    },
+    "name": "repeated pattern"
+  },
+  {
+    "input": {
+      "task": "kmp",
+      "text": "a b a b",
+      "pattern": "a b"
+    },
+    "output": {
+      "positions": [0, 4]
+    },
+    "name": "spaces in text"
+  },
+  {
+    "input": {
+      "task": "kmp",
+      "text": "abcdefgh",
+      "pattern": "xyz"
+    },
+    "output": {
+      "positions": []
+    },
+    "name": "no matches"
+  }
+]
