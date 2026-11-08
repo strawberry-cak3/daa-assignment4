@@ -488,6 +488,6 @@ The Rabin–Karp implementation uses the assignment's modulus of 101. This relat
 
 The assignment specification, published contracts, practical rubric, and course lecture materials were used as the primary references for this work.
 
-ChatGPT (OpenAI) was used as an educational and coding assistant to explain algorithm concepts, suggest and help develop parts of the Java implementations, debug implementation issues, review test cases, and improve the English algorithm analysis and benchmark documentation.
+ChatGPT (OpenAI) was used as an educational and coding assistant to explain algorithm concepts, assist with the development and debugging of the Java implementations, review test cases, and improve the English algorithm analysis and benchmark documentation.
 
-I reviewed and integrated the suggestions, executed the public and custom test suites, and checked the implementation against the published assignment contracts. The final implementation, testing, and submission were reviewed by me.</WritingBlock>
+I reviewed, tested, and integrated the suggested changes. I also ran the public and custom test suites and checked the implementation against the published assignment contracts. I take responsibility for the submitted code, its testing, and the final documentation.
